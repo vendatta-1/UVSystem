@@ -1,0 +1,127 @@
+######################
+# .NET & C# ignores  #
+######################
+
+# Build results
+bin/
+obj/
+out/
+Generated/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# MacOS/Linux
+.DS_Store
+*.swp
+*.swo
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+*.tlog
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+*.orig
+
+# DotCover
+*.dotCover
+
+# User Secrets
+**/secrets.json
+**/secrets/
+
+# SQLite local db
+*.db
+*.sqlite
+*.sqlite3
+
+# ASP.NET Core environment files
+.env
+.env.*
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+
+# Entity Framework Migrations snapshot
+Migrations/
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# JetBrains Rider
+.idea/
+
+# Visual Studio
+.vs/
+*.dbmdl
+*.psess
+*.vsp
+*.vspx
+*.vspscc
+*.vssscc
+
+# Docker
+**/.containers/
+docker-compose.override.yml
+*.tar
+
+# NuGet packages (optional if you restore them per CI/CD)
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Backup files
+*.bak
+*.backup
+
+# Publish directory
+publish/
+artifacts/
+*.Publish.xml
+
+# Local tools
+.tools/
+
+# Coverage tools
+coverage/
+lcov.info
+
+# SonarQube
+.sonar/
+sonar-report.json
+sonar-report.xml
+
+# StyleCop
+stylecop.json
+
+# Local dev databases or config
+*.local.db
+*.dev.db
+
