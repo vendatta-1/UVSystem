@@ -1,0 +1,12 @@
+/home/ashry/RiderProjects/UVS/UVS.Domain/bin/Debug/net9.0/UVS.Domain.deps.json
+/home/ashry/RiderProjects/UVS/UVS.Domain/bin/Debug/net9.0/UVS.Domain.dll
+/home/ashry/RiderProjects/UVS/UVS.Domain/bin/Debug/net9.0/UVS.Domain.pdb
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/UVS.Domain.csproj.AssemblyReference.cache
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/UVS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/UVS.Domain.AssemblyInfoInputs.cache
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/UVS.Domain.AssemblyInfo.cs
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/UVS.Domain.csproj.CoreCompileInputs.cache
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/UVS.Domain.dll
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/refint/UVS.Domain.dll
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/UVS.Domain.pdb
+/home/ashry/RiderProjects/UVS/UVS.Domain/obj/Debug/net9.0/ref/UVS.Domain.dll

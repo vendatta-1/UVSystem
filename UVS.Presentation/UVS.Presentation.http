@@ -1,0 +1,6 @@
+@UVS.Presentation_HostAddress = http://localhost:5032
+
+GET {{UVS.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

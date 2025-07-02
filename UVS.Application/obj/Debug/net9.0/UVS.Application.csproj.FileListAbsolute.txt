@@ -1,0 +1,15 @@
+/home/ashry/RiderProjects/UVS/UVS.Application/bin/Debug/net9.0/UVS.Application.deps.json
+/home/ashry/RiderProjects/UVS/UVS.Application/bin/Debug/net9.0/UVS.Application.dll
+/home/ashry/RiderProjects/UVS/UVS.Application/bin/Debug/net9.0/UVS.Application.pdb
+/home/ashry/RiderProjects/UVS/UVS.Application/bin/Debug/net9.0/UVS.Domain.dll
+/home/ashry/RiderProjects/UVS/UVS.Application/bin/Debug/net9.0/UVS.Domain.pdb
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/UVS.Application.csproj.AssemblyReference.cache
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/UVS.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/UVS.Application.AssemblyInfoInputs.cache
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/UVS.Application.AssemblyInfo.cs
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/UVS.Application.csproj.CoreCompileInputs.cache
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/UVS.Appl.A735DFF0.Up2Date
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/UVS.Application.dll
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/refint/UVS.Application.dll
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/UVS.Application.pdb
+/home/ashry/RiderProjects/UVS/UVS.Application/obj/Debug/net9.0/ref/UVS.Application.dll

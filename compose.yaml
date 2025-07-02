@@ -1,0 +1,22 @@
+﻿services:
+  uvs.presentation:
+    image: uvs.presentation
+    container_name: UVS.Api
+    build:
+      context: .
+      dockerfile: UVS.Presentation/Dockerfile
+    ports:
+      - 8080:8080   
+    depends_on:
+      - uvs.database
+  uvs.database:
+    image: postgres:latest
+    container_name: UVS.Database
+    environment:
+      - POSTGRES_DB=uvsDb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./.containers/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
