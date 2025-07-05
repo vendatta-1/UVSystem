@@ -1,14 +1,15 @@
 ﻿services:
-  uvs.presentation:
-    image: uvs.presentation
-    container_name: UVS.Api
+  uvs.api:
+    image: uvs.api
     build:
       context: .
-      dockerfile: UVS.Presentation/Dockerfile
-    ports:
-      - 8080:8080   
+      dockerfile: UVS.Api/Dockerfile
     depends_on:
       - uvs.database
+    ports:
+      - 5000:8080      # Maps container port 8080 to host 5000 (OK)
+      - 5001:8081      # ❌ CONFLICT with uvs.seq (see below)
+
   uvs.database:
     image: postgres:latest
     container_name: UVS.Database
@@ -19,4 +20,22 @@
     volumes:
       - ./.containers/db:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5432:5432      # Postgres default port (OK)
+
+  uvs.seq:
+    image: datalust/seq:latest
+    container_name: UVS.Seq
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINPASSWORD=Dev123
+    ports:
+      - 5341:5341      # ✅ Seq ingestion API port (used in Serilog config)
+      - 8010:80        # ✅ FIXED: Changed from 8081 to 8010 to avoid conflict with uvs.api
+  
+   
+  uvs.redis:
+    image: redis:latest
+    container_name: UVS.Redis
+    restart: always
+    ports:
+      - 6379:6379      # Redis default port (OK)
