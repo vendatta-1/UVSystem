@@ -2,18 +2,18 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
+using UVS.Common.Application.Clock;
 using UVS.Common.Domain;
 using UVS.Domain.Common;
-using UVS.Domain.Repository;
 using UVS.Modules.System.Infrastructure.Data;
 
 namespace UVS.Modules.System.Infrastructure.Repositories;
 
-internal class Repository<T>(UVSDbContext dbContext, ILogger<Repository<T>> logger):IRepository<T>
-where T:AuditEntity
+internal class Repository<T>(UVSDbContext dbContext, ILogger<Repository<T>> logger, IDateTimeProvider dateTimeProvider)
+    :IRepository<T> where T:AuditEntity
 {
     private readonly DbSet<T> _dbSet = dbContext.Set<T>();
-    public async Task<Result<Guid>> CreateAsync(T entity)
+    public async Task<Guid> CreateAsync(T entity)
     { 
         var result =  await  _dbSet.AddAsync(entity);
         return result.State == EntityState.Added
@@ -21,56 +21,65 @@ where T:AuditEntity
             : throw new ApplicationException($"internal error while append {nameof(T)}");
     }
 
-    public async Task<Result> UpdateAsync(T entity)
+    public async Task<bool> UpdateAsync(T entity)
     {
         var result = _dbSet.Update(entity);
-        
-        return await Task.FromResult(result.State == EntityState.Modified?Result.Success() :Result.Failure(error:Error.Failure("Update failed","Internal server error")) );
+        return await Task.FromResult(result.State == EntityState.Modified);
     }
 
-    public async Task<Result> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(Guid id)
     {
         var entity = await GetByIdAsync(id);
-        var result = _dbSet.Remove(entity.Value);
-        return  result.State ==EntityState.Deleted?Result.Success() :Result.Failure(Error.Problem("Delete failed","Internal server error") ); 
+        if (entity == null)
+        {
+            throw new ApplicationException($"internal error while delete {nameof(T)} there is non entity has this id: {id}");
+        }
+        entity.DeletedAt = dateTimeProvider.UtcNow;
+
+        var result = await UpdateAsync(entity);
+        return  result ?true:
+            throw new ApplicationException($"internal error while delete {nameof(T)}"); 
     }
 
-    public async Task<Result> DeleteAsync(Expression<Func<T, bool>> predicate)
+    public async Task<bool> DeleteAsync(Expression<Func<T, bool>> predicate)
     {
         var entity  = await GetAsync(predicate);
-        entity.Value.DeletedAt = DateTime.UtcNow;
-        await UpdateAsync(entity.Value);
-        return Result.Failure(Error.Failure("Delete failed","Check the expression may be hit no entity"));
+        if (entity == null)
+        {
+            throw new ApplicationException($"internal error while delete {nameof(T)} there is non entity match predict");
+        }
+        entity.DeletedAt = DateTime.UtcNow;
+        await UpdateAsync(entity);
+        return true;
     }
 
-    public async Task<Result<IReadOnlyCollection<T>>> GetAllAsync()
+    public async Task<IReadOnlyCollection<T>> GetAllAsync()
     {
         return  await Task.FromResult(_dbSet.AsNoTracking().ToList());
     }
 
-    public async Task<Result<IReadOnlyCollection<T>>> GetAllAsync(Expression<Func<T, bool>> predicate)
+    public async Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>> predicate)
     {
         return await _dbSet.AsNoTracking().Where(predicate).ToListAsync();
     }
 
-    public async Task<Result<T?>> GetAsync(Expression<Func<T, bool>> predicate)
+    public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate)
     {
         return await _dbSet.Where(predicate).FirstOrDefaultAsync();
-        
     }
 
-    public async Task<Result<T?>> GetByIdAsync(Guid id)
+    public async Task<T?> GetByIdAsync(Guid id)
     {
-        return await _dbSet.FindAsync(id);
+        return await GetAsync(x => x.Id == id);
     }
-    
 
-    public async Task<Result> ExistsAsync(Expression<Func<T, bool>> predicate)
+
+    public async Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate)
     {
-        return await _dbSet.Where(predicate).AnyAsync()?Result.Success() :Result.Failure(Error.NotFound("Entity.NotFound","Entity not found"));
+        return await _dbSet.Where(predicate).AnyAsync();
     }
 
-    public async Task<Result<int>> CountAsync(Expression<Func<T, bool>> predicate)
+    public async Task<int> CountAsync(Expression<Func<T, bool>> predicate)
     {
         return await _dbSet.Where(predicate).CountAsync();
     }

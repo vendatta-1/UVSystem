@@ -18,22 +18,22 @@ public sealed class CreateCourseCommandHandler(ISemesterRepository semesterRepos
     public async Task<Result<Guid>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
     {    
         var deptExists = await departmentRepository.ExistsAsync(x=>x.Id == request.DepartmentId);
-        if (deptExists.IsFailure)
+        if (!deptExists)
         {
-            return Result.Failure<Guid>(deptExists.Error);
+            return Result.Failure<Guid>(Error.NotFound("Department.NotFound",$"There is non department has this id {request.DepartmentId}"));
         }
         var semesterResult = await semesterRepository.GetByIdAsync(request.SemesterId);
-        if (semesterResult.IsFailure)
+        if (semesterResult==null)
         {
-            return Result.Failure<Guid>(semesterResult.Error);
+            return Result.Failure<Guid>(Error.NotFound("Semester.NotFound",$"There is non semester has this id {request.SemesterId}"));
         }
 
         if (request.InstructorId.HasValue && request.InstructorId.Value != Guid.Empty)
         {
             var instructorExists = await instructorRepository.ExistsAsync(x => x.Id == request.InstructorId);
-            if (instructorExists.IsFailure)
+            if (!instructorExists)
             {
-                return Result.Failure<Guid>(instructorExists.Error);
+                return Result.Failure<Guid>(Error.NotFound("Instructor.NotFound",$"the instructor does not exist with {request.InstructorId}"));
             }
         }
 
@@ -46,16 +46,12 @@ public sealed class CreateCourseCommandHandler(ISemesterRepository semesterRepos
             request.InstructorId,
             request.Description
         );
-        var semester = semesterResult.Value;
+        var semester = semesterResult;
         
         semester.AddSemesterCourse(course);
         
-        var createResult = await courseRepository.CreateAsync(course);
-
-        if (createResult.IsFailure)
-        {
-            return Result.Failure<Guid>(createResult.Error);
-        }
+        await courseRepository.CreateAsync(course);
+        
         
         await unitOfWork.SaveChangesAsync(cancellationToken);
         

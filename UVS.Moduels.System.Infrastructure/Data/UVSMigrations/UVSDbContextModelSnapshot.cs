@@ -114,7 +114,7 @@ namespace UVS.Modules.System.Infrastructure.Data.UVSMigrations
                         .HasColumnType("text")
                         .HasColumnName("deleted_by");
 
-                    b.Property<Guid>("HeadOfDepartmentId")
+                    b.Property<Guid?>("HeadOfDepartmentId")
                         .HasColumnType("uuid")
                         .HasColumnName("head_of_department_id");
 

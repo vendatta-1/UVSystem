@@ -18,7 +18,7 @@ public sealed class Department:AuditEntity
 
     public Department() {}
 
-    public static Department Create(string name, Guid headId, int maxCreditHours)
+    public static Department Create(string name, Guid? headId, int maxCreditHours)
     {
         if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Name is required");
         if (maxCreditHours < 1 || maxCreditHours > 30) throw new ArgumentOutOfRangeException("Credit hours limit invalid");
@@ -31,5 +31,11 @@ public sealed class Department:AuditEntity
         };
     }
 
-    public Guid HeadOfDepartmentId { get; private set; }
+    public void ChangeHeadId(Guid headId)
+    {
+        HeadOfDepartmentId = headId;
+        Raise(new ChangeDepartmentHeadDomainEvent(Id, headId));
+    }
+
+    public Guid? HeadOfDepartmentId { get; private set; }
 }

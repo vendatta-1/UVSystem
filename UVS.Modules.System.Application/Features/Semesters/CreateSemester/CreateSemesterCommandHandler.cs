@@ -12,7 +12,7 @@ public sealed class CreateSemesterCommandHandler(ISemesterRepository repository,
     public async Task<Result<Guid>> Handle(CreateSemesterCommand request, CancellationToken cancellationToken)
     {
          var exist = await repository.ExistsAsync(se=>string.Equals(se.Name, request.Name, StringComparison.InvariantCultureIgnoreCase));
-         if (exist.IsSuccess)
+         if (!exist)
          {
              throw new ApplicationException($"Semester with name {request.Name} already exists");
          }
@@ -26,13 +26,11 @@ public sealed class CreateSemesterCommandHandler(ISemesterRepository repository,
              request.AcademicYear,
              request.IsCurrent
          );
-        var result = await repository.CreateAsync(semester);
+        var semesterId = await repository.CreateAsync(semester);
 
-        if (result.IsSuccess)
-        {
-           await unitOfWork.SaveChangesAsync(cancellationToken);
-           return result.Value;
-        }
-        throw new ApplicationException($"Failed to create semester");
+      
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return semesterId;
     }
 }

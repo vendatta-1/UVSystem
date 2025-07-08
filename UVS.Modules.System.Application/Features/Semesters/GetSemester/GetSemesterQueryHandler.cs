@@ -10,22 +10,22 @@ public sealed class GetSemesterQueryHandler(ISemesterRepository  repository,ICac
 {
     public async Task<Result<SemesterResponse>> Handle(GetSemesterQuery request, CancellationToken cancellationToken)
     {
-        var semester = await cacheService.GetAsync<SemesterResponse>($"semester-{request.SemesterId}");
-        if (semester!=null)
+        var semesterCache = await cacheService.GetAsync<SemesterResponse>($"semester-{request.SemesterId}", cancellationToken);
+        if (semesterCache!=null)
         {
-           return semester;
+           return semesterCache;
         }
-        var result= await repository.GetAsync(se=>se.Id == request.SemesterId && se.IsDeleted == false);
-        if (result.IsSuccess)
+        var semester = await repository.GetAsync(se=>se.Id == request.SemesterId && se.IsDeleted == false);
+        if (semester!=null)
         {
             return new SemesterResponse()
             {
-                 Name = result.Value.Name,
-                 AcademicYear = result.Value.AcademicYear,
-                 DepartmentId = result.Value.DepartmentId,
-                 StartDate = result.Value.StartDate,
-                 EndDate = result.Value.EndDate,
-                 IsCurrent = result.Value.IsCurrent,
+                 Name = semester.Name,
+                 AcademicYear = semester.AcademicYear,
+                 DepartmentId = semester.DepartmentId,
+                 StartDate = semester.StartDate,
+                 EndDate = semester.EndDate,
+                 IsCurrent = semester.IsCurrent,
             };
         }
         return Result.Failure<SemesterResponse>(Error.NotFound("Semester.NotFound",$"Semester with such id:{request.SemesterId} doesn't exist"));

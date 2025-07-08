@@ -24,7 +24,7 @@ public sealed class Course:AuditEntity
     private readonly List<SemesterCourse> _semesterCourses = new();
     public IReadOnlyList<SemesterCourse> SemesterCourses => _semesterCourses.AsReadOnly();
 
-    public bool IsAvailable => true; // placeholder logic
+    public bool IsAvailable => true;  
 
     private Course() {}
 
@@ -33,7 +33,7 @@ public sealed class Course:AuditEntity
         if (string.IsNullOrWhiteSpace(code)) throw new ArgumentException("Course code is required");
         if (creditHours < 1 || creditHours > 6) throw new ArgumentOutOfRangeException(nameof(creditHours));
 
-        return new Course
+        var course =new Course
         {
             Code = code,
             Name = name,
@@ -42,6 +42,17 @@ public sealed class Course:AuditEntity
             InstructorId = instructorId,
             Description = desc
         };
+        course.Raise(new CreateCourseDomainEvent(course.Id));
+        return course;
+        
+    }
+
+    public void UpdateCourseCode(string code)
+    {
+        code = code ?? throw new ArgumentNullException(nameof(code));
+        if (string.IsNullOrWhiteSpace(code)) throw new ArgumentException("Course code is required");
+        Code = code;
+        Raise(new ChangeCourseCodeDomainEvent(Id, code));
     }
 
     public void AddSchedule(Schedule schedule)
@@ -50,5 +61,7 @@ public sealed class Course:AuditEntity
         if (_schedules.Contains(schedule)) throw new ArgumentException("Schedule already exists");
         if(schedule.CourseId !=Id) throw new ArgumentException("Course id is not valid");
         _schedules.Add(schedule);
+        Raise(new UpdateCourseDomainEvent(Id));
     }
+    
 }

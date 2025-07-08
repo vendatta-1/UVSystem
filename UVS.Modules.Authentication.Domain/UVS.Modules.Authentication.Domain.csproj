@@ -7,4 +7,8 @@
         <RootNamespace>UVS.Authentication.Domain</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UVS.Common.Domain\UVS.Common.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

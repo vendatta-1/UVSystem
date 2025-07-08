@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+        <HintPath>..\..\..\.nuget\packages\microsoft.aspnetcore.app.ref\9.0.5\ref\net9.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+        <HintPath>..\..\..\.nuget\packages\microsoft.aspnetcore.app.ref\9.0.5\ref\net9.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\UVS.Common.Application\UVS.Common.Application.csproj" />
+      <ProjectReference Include="..\UVS.Common.Infrastructure\UVS.Common.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

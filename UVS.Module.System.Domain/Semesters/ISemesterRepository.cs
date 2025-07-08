@@ -1,4 +1,4 @@
-using UVS.Domain.Repository;
+using UVS.Common.Domain;
 
 namespace UVS.Domain.Semesters;
 

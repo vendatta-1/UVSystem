@@ -17,16 +17,13 @@ public class EnrollCourseCommandHandler(
 {
     public async Task<Result> Handle(EnrollCourseCommand request, CancellationToken cancellationToken)
     {
-        var studentResult = await studentRepository.GetByIdAsync(request.StudentId);
-        if (studentResult.IsFailure )
+        var student = await studentRepository.GetByIdAsync(request.StudentId);
+        if (student==null )
             return Result.Failure(Error.NotFound("Student.NotFound","Student not found"));
 
-        var courseResult = await courseRepository.GetByIdAsync(request.CourseId);
-        if (courseResult.IsFailure )
-            return Result.Failure(courseResult.Error);
-
-        var student = studentResult.Value;
-        var course = courseResult.Value;
+        var course = await courseRepository.GetByIdAsync(request.CourseId);
+        if (course==null )
+            return Result.Failure(Error.NotFound("Course.NotFound","Course not found"));
 
         try
         {
@@ -38,6 +35,7 @@ public class EnrollCourseCommandHandler(
         }
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
+        
         return Result.Success();
     }
 }

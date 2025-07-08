@@ -13,14 +13,14 @@ public sealed class CreateDepartmentCommandHandler(IDepartmentRepository departm
     public async Task<Result<Guid>> Handle(CreateDepartmentCommand request, CancellationToken cancellationToken)
     {
         var userExists = await instructorRepository.GetByIdAsync(request.HeadId);
-        if (userExists.IsFailure || userExists.Value == null)
+        if (userExists==null && request.HeadId != Guid.Empty)
         {
-            return Result.Failure<Guid>(userExists.Error);
+            return Result.Failure<Guid>(Error.NotFound("Instructor.NotFound",$"The instructor does not exist {request.HeadId}"));
         }
         
         var department = Department.Create(request.Name, request.HeadId, request.MaxCreditHoursPerSemester);
-        var createdDepartment = await departmentRepository.CreateAsync(department);
+        var deptId = await departmentRepository.CreateAsync(department);
         await unitOfWork.SaveChangesAsync(cancellationToken);
-        return Result.Success(createdDepartment.Value);
+        return deptId;
     }
 }

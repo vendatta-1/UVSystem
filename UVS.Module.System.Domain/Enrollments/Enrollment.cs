@@ -40,4 +40,9 @@ public sealed class Enrollment : AuditEntity
 
     public double GetGradePoint()
         => (Grade.HasValue && !IsWithdrawn) ? Grade.Value.ToGpaPoint() : 0.0;
+
+    public void UpdateGrade(double grade)
+    {
+        this.Grade = grade;
+    }
 }

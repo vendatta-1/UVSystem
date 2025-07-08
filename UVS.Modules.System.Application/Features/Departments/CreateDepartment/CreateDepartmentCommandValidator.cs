@@ -7,6 +7,6 @@ public sealed class CreateDepartmentCommandValidator:AbstractValidator<CreateDep
     public CreateDepartmentCommandValidator()
     {
         RuleFor(x => x.Name).NotEmpty();
-        RuleFor(x=>x.MaxCreditHoursPerSemester).GreaterThan(0).LessThan(24);
+        RuleFor(x=>x.MaxCreditHoursPerSemester).GreaterThan(0).LessThanOrEqualTo(24);
     }
 }

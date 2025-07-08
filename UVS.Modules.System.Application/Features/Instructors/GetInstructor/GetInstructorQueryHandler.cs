@@ -10,16 +10,16 @@ public sealed class GetInstructorQueryHandler(IInstructorRepository repository) 
 {
     public async Task<Result<InstructorResponse>> Handle(GetInstructorQuery request, CancellationToken cancellationToken)
     {
-        var isExists = await repository.GetAsync(x => x.Id == request.InstructorId);
+        var instructor = await repository.GetAsync(x => x.Id == request.InstructorId);
 
-        if (isExists.IsFailure)
+        if (instructor == null)
         {
             return Result.Failure<InstructorResponse>(Error.NotFound("Instructor.NotFound",
                 $"there is non instructor has this id {request.InstructorId}"));
         }
 
-        return Result.Success(new InstructorResponse(isExists.Value.FullName, isExists.Value.Email,
-            isExists.Value.DepartmentId));
+        return Result.Success(new InstructorResponse(instructor.FullName, instructor.Email,
+            instructor.DepartmentId));
         
     }
 }

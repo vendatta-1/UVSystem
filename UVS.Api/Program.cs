@@ -18,6 +18,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();

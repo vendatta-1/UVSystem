@@ -13,10 +13,10 @@ public class CreateStudentCommandHandler(IStudentRepository repository,IUnitOfWo
 {
     public async Task<Result<Guid>> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
     {
-         var result = await departmentRepository.GetAsync(dept=>dept.Name == request.DepartmentName);
-         if (result.IsFailure)
+         var result = await departmentRepository.GetAsync(dept=> dept.Name.ToLower() == request.DepartmentName.ToLower());
+         if (result == null)
          {
-             return Result.Failure<Guid>(Error.NotFound("Department.NotFound", request.DepartmentName));
+             return Result.Failure<Guid>(Error.NotFound("Department.NotFound", $"The department {request.DepartmentName} was not found"));
          }
          
 
@@ -28,17 +28,11 @@ public class CreateStudentCommandHandler(IStudentRepository repository,IUnitOfWo
              request.Phone,
              request.DateOfBirth,
              request.Gender,
-             result.Value.Id
+             result.Id
          );
          
          var createResult = await repository.CreateAsync(student);
          
-         
-         if (createResult.IsFailure)
-         {
-             return Result.Failure<Guid>(Error.Failure("Student.CreateFailed", result.Error.Description));
-         }
-
          await unitOfWork.SaveChangesAsync(cancellationToken);
 
          return createResult;

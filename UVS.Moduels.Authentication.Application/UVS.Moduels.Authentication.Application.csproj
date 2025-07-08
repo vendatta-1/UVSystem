@@ -7,4 +7,17 @@
         <RootNamespace>UVS.Authentication.Application</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Users\ChangePassword\" />
+      <Folder Include="Users\GetUser\" />
+      <Folder Include="Users\Login\" />
+      <Folder Include="Users\Register\" />
+      <Folder Include="Users\UpdateInfo\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\UVS.Common.Application\UVS.Common.Application.csproj" />
+      <ProjectReference Include="..\UVS.Modules.Authentication.Domain\UVS.Modules.Authentication.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

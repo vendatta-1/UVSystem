@@ -13,7 +13,7 @@ public sealed class GetStudentsQueryHandler(IStudentRepository repository, IMapp
     {
         var result = await repository.GetAllAsync();
         
-        var response = mapper.Map<IReadOnlyList<StudentResponse>>(result.Value);
+        var response = mapper.Map<IReadOnlyList<StudentResponse>>(result);
         
         return Result.Success(response);
     }

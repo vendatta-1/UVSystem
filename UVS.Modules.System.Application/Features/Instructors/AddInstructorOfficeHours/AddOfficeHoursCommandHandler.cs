@@ -18,15 +18,12 @@ public sealed class AddOfficeHoursCommandHandler(IInstructorRepository repositor
             request.EndTime
         );
 
-        var result = await repository.GetByIdAsync(request.InstructorId);
-        if (result.IsFailure)
+        var instructor = await repository.GetByIdAsync(request.InstructorId);
+        if (instructor==null)
         {
             return Result.Failure(Error.NotFound("Instructor.NotFound",$"there is non instructor has this id {request.InstructorId}"));
             
         }
-
-        var instructor = result.Value;
-        
         instructor.AddOfficeHour(officeHour);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);

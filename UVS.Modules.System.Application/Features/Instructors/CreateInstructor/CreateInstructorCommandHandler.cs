@@ -13,14 +13,10 @@ public sealed class CreateInstructorCommandHandler(IInstructorRepository instruc
     {
         var instructor = Instructor.Create(request.FullName, request.Email, request.DepartmentId);
 
-        var result = await instructorRepository.CreateAsync(instructor);
+        var instructorId = await instructorRepository.CreateAsync(instructor);
 
-        if (result.IsFailure)
-        {
-            return Result.Failure<Guid>(
-                Error.Failure("Instructor.FaildCreat", "internal error while create instructor"));
-        }
+       
 
-        return Result.Success<Guid>(result.Value);
+        return instructorId;
     }
 }
