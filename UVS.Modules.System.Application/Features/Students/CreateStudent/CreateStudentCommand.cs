@@ -18,8 +18,12 @@ public record CreateStudentCommand:ICommand<Guid>
     public DateTime DateOfBirth { get; set; }
     
     public string Gender { get; set; }
-
   
     public string DepartmentName { get; set; }
+    
     public AcademicLevel Level { get; set; }
+
+    public string City { get; set; } = null!;
+    public string? Town { get; set; } 
+    public string ZipCode { get; set; } = null!;
 }

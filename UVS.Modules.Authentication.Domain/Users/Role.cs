@@ -7,9 +7,10 @@ public sealed class Role
     public static readonly Role Instructor = new Role("Instructor");
     public static readonly Role Head = new Role("Head");
 
+    public Role(){}
     private Role(string name)
     {
         Name = name;
     }
-    public string Name { get; private set; }
+    public string Name { get;  set; }
 }

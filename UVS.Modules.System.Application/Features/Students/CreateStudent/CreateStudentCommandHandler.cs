@@ -14,6 +14,7 @@ public class CreateStudentCommandHandler(IStudentRepository repository,IUnitOfWo
     public async Task<Result<Guid>> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
     {
          var result = await departmentRepository.GetAsync(dept=> dept.Name.ToLower() == request.DepartmentName.ToLower());
+         
          if (result == null)
          {
              return Result.Failure<Guid>(Error.NotFound("Department.NotFound", $"The department {request.DepartmentName} was not found"));
@@ -28,7 +29,9 @@ public class CreateStudentCommandHandler(IStudentRepository repository,IUnitOfWo
              request.Phone,
              request.DateOfBirth,
              request.Gender,
-             result.Id
+             result.Id,
+             request.Level,
+             new Address(request.City,request.City,request.Town)
          );
          
          var createResult = await repository.CreateAsync(student);

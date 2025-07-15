@@ -1,4 +1,4 @@
-namespace UVS.Authentication.Application.Abstractions.Data;
+namespace UVS.Modules.Authentication.Application.Abstractions.Data;
 
 public interface IUnitOfWork
 {

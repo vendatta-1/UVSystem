@@ -7,4 +7,16 @@
         <RootNamespace>UVS.Authentication.Infrastructure</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UVS.Common.Infrastructure\UVS.Common.Infrastructure.csproj" />
+      <ProjectReference Include="..\UVS.Moduels.Authentication.Application\UVS.Moduels.Authentication.Application.csproj" />
+      <ProjectReference Include="..\UVS.Modules.Authentication.Presentation\UVS.Modules.Authentication.Presentation.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.1.66" />
+      <PackageReference Include="EFCore.NamingConventions" Version="9.0.0" />
+      <PackageReference Include="Keycloak.Net.Core" Version="1.0.34" />
+    </ItemGroup>
+
 </Project>

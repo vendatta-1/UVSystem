@@ -1,6 +1,6 @@
 using UVS.Common.Domain;
 
-namespace UVS.Authentication.Application.Abstractions.Identity;
+namespace UVS.Modules.Authentication.Application.Abstractions.Identity;
 
 public static class IdentityProviderErrors
 {

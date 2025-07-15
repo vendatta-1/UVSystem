@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Serilog;
 using UVS.Api.Extensions;
 using UVS.Api.Middleware;
+using UVS.Authentication.Infrastructure;
 using UVS.Common.Application;
-using UVS.Common.Application.Exceptions;
 using UVS.Common.Infrastructure;
 using UVS.Modules.System.Infrastructure;
 using UVS.Modules.System.Presentation;
@@ -28,21 +28,25 @@ builder.Services.AddProblemDetails();
 builder.Services.AddControllers()
     .PartManager
     .ApplicationParts
-    .Add(new AssemblyPart(AddSystemPresentation.Assembly));
+    .Add(new AssemblyPart(AssemblyReference.Assembly));
 
-builder.Services.AddAutoMapper(UVS.Modules.System.Application.ApplicationConfiguration.Assembly);
+builder.Services.AddAutoMapper(UVS.Modules.System.Application.AssemblyReference.Assembly);
 
 
 builder.Services.AddAntiforgery();
 
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddInfrastructure(
+    builder.Configuration,
+    [AuthModule.ConfigureConsumers]);
 
 
 builder.Services.AddSystemModule(builder.Configuration);
+builder.Services.AddAuthModule(builder.Configuration);
 
 Assembly[] modulesAssemblies =
 [
-    UVS.Modules.System.Application.ApplicationConfiguration.Assembly
+    UVS.Modules.System.Application.AssemblyReference.Assembly,
+    UVS.Modules.Authentication.Application.AssemblyReference.Assembly,
 ];
 
 builder.Services.AddApplication(modulesAssemblies);
@@ -71,5 +75,9 @@ app.UseSerilogRequestLogging();
 app.UseExceptionHandler();
 
 app.MapControllers();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.Run();

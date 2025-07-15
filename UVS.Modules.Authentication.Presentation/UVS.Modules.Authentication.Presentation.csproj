@@ -7,4 +7,11 @@
         <RootNamespace>UVS.Authentication.Presentation</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UVS.Common.Presentation\UVS.Common.Presentation.csproj" />
+      <ProjectReference Include="..\UVS.Moduels.Authentication.Application\UVS.Moduels.Authentication.Application.csproj" />
+      <ProjectReference Include="..\UVS.Modules.System.Integration\UVS.Modules.System.Integration.csproj" />
+ 
+    </ItemGroup>
+
 </Project>

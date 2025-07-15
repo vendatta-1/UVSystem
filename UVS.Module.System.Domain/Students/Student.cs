@@ -8,6 +8,7 @@ namespace UVS.Domain.Students;
 
 public sealed class Student :AuditEntity
 {
+    public new Guid Id { get;private init; }
     public string FullName { get; private set; }
     public string NationalId { get; private set; }
     public string Email { get; private set; }
@@ -15,25 +16,34 @@ public sealed class Student :AuditEntity
     public DateTime DateOfBirth { get; private set; }
     public string Gender { get; private set; }
     public Guid DepartmentId { get; private set; }
+    
     public AcademicLevel Level { get; private set; } = AcademicLevel.Freshman;
-
+    
+    public Address Address { get; private set; }
+    
     private readonly List<Enrollment> _enrollments = new();
     public IReadOnlyList<Enrollment> Enrollments => _enrollments.AsReadOnly();
 
     public Student() {}
 
-    public static Student Create(string fullName, string nationalId, string email, string phone, DateTime dob, string gender, Guid deptId)
+    public static Student Create(string fullName, string nationalId, string email, string phone, DateTime dob, string gender, Guid deptId, AcademicLevel level, Address address)
     {
-        return new Student()
+        var student = new Student()
         {
+            Id = Guid.NewGuid(),
             FullName = fullName,
             NationalId = nationalId,
             Email = email,
             Phone = phone,
             DateOfBirth = dob,
             Gender = gender,
-            DepartmentId = deptId
+            DepartmentId = deptId,
+            Address = address
         };
+        
+        student.Raise(new CreateStudentDomainEvent(student.Id));
+        
+        return student;
 
     }
 
@@ -55,6 +65,11 @@ public sealed class Student :AuditEntity
         double totalPoints = graded.Sum(e => (e.Course?.CreditHours ?? 0) * e.GetGradePoint());
 
         return totalCredits == 0 ? 0 : totalPoints / totalCredits;
+    }
+
+    public void UpdateStudentAcademicLevel(AcademicLevel level)
+    {
+        this.Level = level;
     }
 
 }

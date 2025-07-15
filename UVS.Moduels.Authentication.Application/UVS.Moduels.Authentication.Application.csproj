@@ -4,20 +4,22 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>UVS.Authentication.Application</RootNamespace>
+        <RootNamespace>UVS.Modules.Authentication.Application</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
       <Folder Include="Users\ChangePassword\" />
-      <Folder Include="Users\GetUser\" />
       <Folder Include="Users\Login\" />
-      <Folder Include="Users\Register\" />
-      <Folder Include="Users\UpdateInfo\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\UVS.Common.Application\UVS.Common.Application.csproj" />
       <ProjectReference Include="..\UVS.Modules.Authentication.Domain\UVS.Modules.Authentication.Domain.csproj" />
+      <ProjectReference Include="..\UVS.Modules.Authentication.IntgerationEvents\UVS.Modules.Authentication.IntgerationEvents.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.1.66" />
     </ItemGroup>
 
 </Project>

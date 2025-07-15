@@ -5,6 +5,7 @@ using UVS.Common.Presentation.Endpoints;
 using UVS.Common.Presentation.Results;
 using UVS.Modules.System.Application.Features.Departments.CreateDepartment;
 using UVS.Modules.System.Application.Features.Departments.GetDepartment;
+using UVS.Modules.System.Application.Features.Departments.SetDepartmentHead;
 
 namespace UVS.Modules.System.Presentation.Controllers;
 
@@ -25,6 +26,13 @@ public class DepartmentController(ISender sender): UVSController
     {
         var result = await sender.Send(command);
         return result.Match(Results.Ok , ApiResults.Problem);
+    }
+
+    [HttpPut]
+    public async Task<IResult> SetHead(SetDepartmentHeadCommand command)
+    {
+        var result = await sender.Send(command);
+        return result.Match(Results.NoContent, ApiResults.Problem);
     }
     
     

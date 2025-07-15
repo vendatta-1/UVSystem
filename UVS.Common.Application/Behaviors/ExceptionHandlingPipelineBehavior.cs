@@ -22,7 +22,7 @@ internal sealed class ExceptionHandlingPipelineBehavior<TRequest, TResponse>(
         {
             logger.LogError(exception, "Unhandled exception for {RequestName}", typeof(TRequest).Name);
 
-            throw new GlobalException(typeof(TRequest).Name, innerException: exception);
+            throw new UVSException(typeof(TRequest).Name, innerException: exception);
         }
     }
 }

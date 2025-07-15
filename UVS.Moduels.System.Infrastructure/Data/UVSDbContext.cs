@@ -1,3 +1,5 @@
+using UVS.Common.Infrastructure.Inbox;
+using UVS.Common.Infrastructure.Outbox;
 using UVS.Modules.System.Application.Data;
 using UVS.Domain.Courses;
 using UVS.Domain.Departments;
@@ -21,7 +23,12 @@ public sealed class UVSDbContext(DbContextOptions<UVSDbContext> options) : DbCon
     public DbSet<Semester> Semesters { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.HasDefaultSchema("system");
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UVSDbContext).Assembly);
+        modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
+        modelBuilder.ApplyConfiguration(new OutboxMessageConsumerConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConsumerConfiguration());
     }
 }

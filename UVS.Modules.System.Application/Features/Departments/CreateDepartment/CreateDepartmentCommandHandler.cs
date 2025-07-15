@@ -7,7 +7,7 @@ using UVS.Modules.System.Application.Data;
 
 namespace UVS.Modules.System.Application.Features.Departments.CreateDepartment;
 
-public sealed class CreateDepartmentCommandHandler(IDepartmentRepository departmentRepository,
+internal sealed class CreateDepartmentCommandHandler(IDepartmentRepository departmentRepository,
     IInstructorRepository instructorRepository,IUnitOfWork unitOfWork):ICommandHandler<CreateDepartmentCommand, Guid>
 {
     public async Task<Result<Guid>> Handle(CreateDepartmentCommand request, CancellationToken cancellationToken)

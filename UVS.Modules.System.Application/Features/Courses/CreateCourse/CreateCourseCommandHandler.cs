@@ -8,7 +8,7 @@ using UVS.Modules.System.Application.Data;
 
 namespace UVS.Modules.System.Application.Features.Courses.CreateCourse;
 
-public sealed class CreateCourseCommandHandler(ISemesterRepository semesterRepository,
+internal sealed class CreateCourseCommandHandler(ISemesterRepository semesterRepository,
     ICourseRepository courseRepository,
     IInstructorRepository instructorRepository,
     IDepartmentRepository departmentRepository,

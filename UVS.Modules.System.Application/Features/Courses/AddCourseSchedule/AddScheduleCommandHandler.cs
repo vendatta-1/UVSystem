@@ -6,7 +6,7 @@ using UVS.Modules.System.Application.Data;
 
 namespace UVS.Modules.System.Application.Features.Courses.AddCourseSchedule;
 
-public sealed class AddScheduleCommandHandler(IScheduleRepository scheduleRepository, IUnitOfWork unitOfWork,ICourseRepository courseRepository)
+internal sealed class AddScheduleCommandHandler(IScheduleRepository scheduleRepository, IUnitOfWork unitOfWork,ICourseRepository courseRepository)
     : ICommandHandler<AddScheduleCommand>
 {
     public async Task<Result> Handle(AddScheduleCommand request, CancellationToken cancellationToken)

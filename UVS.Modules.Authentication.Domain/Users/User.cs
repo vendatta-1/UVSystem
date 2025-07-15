@@ -2,15 +2,15 @@ using UVS.Common.Domain;
 
 namespace UVS.Authentication.Domain.Users;
 
-public sealed class User : Entity
+public sealed class User : AuditEntity
 {
     private readonly List<Role> _roles= [];
     private User(){}
 
     
     public  new Guid Id { get; init; }
-    public string FirstName { get; init; }
-    public string LastName { get; init; }
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
     public string Email { get; init; }
     public string IdentityId { get; init; }
     public IReadOnlyCollection<Role> Roles => _roles;
@@ -26,8 +26,14 @@ public sealed class User : Entity
             IdentityId = identityId,
         };
         user._roles.Add(role);
-        user.Raise(new UserRegisteredDomainEvent(user.Id));
+        user.Raise(new UserRegisteredDomainEvent(user.Id,Guid.Parse(user.IdentityId)));
         return user;
     }
-    
+
+    public void Update(string firstName, string lastName)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+    }
+
 }

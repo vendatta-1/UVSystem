@@ -7,9 +7,9 @@
     depends_on:
       - uvs.database
     ports:
-      - 5000:8080      # Maps container port 8080 to host 5000 (OK)
-      - 5001:8081      # ❌ CONFLICT with uvs.seq (see below)
-
+      - 5000:8080       
+      - 5001:8081       
+      
   uvs.database:
     image: postgres:latest
     container_name: UVS.Database
@@ -20,7 +20,7 @@
     volumes:
       - ./.containers/db:/var/lib/postgresql/data
     ports:
-      - 5432:5432      # Postgres default port (OK)
+      - 5432:5432      
 
   uvs.seq:
     image: datalust/seq:latest
@@ -29,8 +29,8 @@
       - ACCEPT_EULA=Y
       - SEQ_FIRSTRUN_ADMINPASSWORD=Dev123
     ports:
-      - 5341:5341      # ✅ Seq ingestion API port (used in Serilog config)
-      - 8010:80        # ✅ FIXED: Changed from 8081 to 8010 to avoid conflict with uvs.api
+      - 5341:5341      # Seq ingestion API port (used in Serilog config)
+      - 8010:80        # FIXED: Changed from 8081 to 8010 to avoid conflict with uvs.api
   
    
   uvs.redis:
@@ -44,15 +44,21 @@
   uvs.identity:
     image: quay.io/keycloak/keycloak:latest
     container_name: UVS.Identity
-    command: start-dev --import-realm
+    command: start-dev --db=postgres --import-realm
     environment:
-      - KC_HEALTH_ENABLED=true
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HEALTH_ENABLED=true
+      - KC_DB_USERNAME=postgres
+      - KC_DB_PASSWORD=postgres
+      - KC_DB_SCHEMA=keycloak
+      - KC_DB_URL=jdbc:postgresql://uvs.database:5432/uvsDb
+      - KC_LOG_LEVEL=DEBUG
+    depends_on:
+      - uvs.database
     volumes:
-      - ./.containers/identity:/opt/keycloak/data
       - ./.files:/opt/keycloak/data/import
     ports:
       - 18080:8080
-    
+
     

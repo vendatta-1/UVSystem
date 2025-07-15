@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using UVS.Authentication.Infrastructure.Data;
 using UVS.Modules.System.Infrastructure.Data;
 
 namespace UVS.Api.Extensions;
@@ -9,6 +10,7 @@ internal static class MigrationExtension
     {
         using var scope = app.ApplicationServices.CreateScope();
         ApplyMigration<UVSDbContext>(scope);
+        ApplyMigration<AuthDbContext>(scope);
     }
 
     private static void ApplyMigration<TDbContext>(IServiceScope scope)
