@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UVS.Authentication.Domain.Users;
+using UVS.Modules.Authentication.Domain.Users;
 
-namespace UVS.Authentication.Infrastructure.Users;
+namespace UVS.Modules.Authentication.Infrastructure.Users;
 
 internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {

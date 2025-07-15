@@ -1,8 +1,8 @@
 ﻿using System.Data.Common;
 using Dapper;
-using UVS.Authentication.Domain.Users;
 using UVS.Common.Application.Messaging;
 using UVS.Common.Domain;
+using UVS.Modules.Authentication.Domain.Users;
 using UVS.Modules.System.Application.Data;
 
 namespace UVS.Modules.Authentication.Application.Users.GetUser;

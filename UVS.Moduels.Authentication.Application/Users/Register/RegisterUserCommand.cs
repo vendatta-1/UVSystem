@@ -1,5 +1,5 @@
-using UVS.Authentication.Domain.Users;
 using UVS.Common.Application.Messaging;
+using UVS.Modules.Authentication.Domain.Users;
 
 namespace UVS.Modules.Authentication.Application.Users.Register;
 

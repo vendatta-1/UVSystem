@@ -7,7 +7,7 @@ using UVS.Common.Infrastructure.Inbox;
 using UVS.Common.Infrastructure.Serialization;
 using UVS.Modules.System.Application.Data;
 
-namespace UVS.Authentication.Infrastructure.Inbox;
+namespace UVS.Modules.Authentication.Infrastructure.Inbox;
 
 internal sealed class IntegrationEventConsumer<TIntegrationEvent>
     (
@@ -31,8 +31,7 @@ internal sealed class IntegrationEventConsumer<TIntegrationEvent>
         };
         var sql = $"""
                    INSERT INTO auth.inbox_messages(id, type, content, occurred_on_utc)
-                   VALUES(@Id, @Type, @Content::json, @OccurredOnUtc)";"
-                   
+                   VALUES(@Id, @Type, @Content::json, @OccurredOnUtc);
                    """;
         await connection.ExecuteAsync(sql, inboxMessage);
     }

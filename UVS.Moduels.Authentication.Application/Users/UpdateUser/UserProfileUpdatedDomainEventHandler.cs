@@ -1,7 +1,6 @@
-﻿  
-using UVS.Authentication.Domain.Users;
-using UVS.Common.Application.EventBus;
+﻿using UVS.Common.Application.EventBus;
 using UVS.Common.Application.Messaging;
+using UVS.Modules.Authentication.Domain.Users;
 using UVS.Modules.Authentication.IntegrationEvents;
 
 namespace Evently.Modules.Users.Application.Users.UpdateUser;

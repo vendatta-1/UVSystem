@@ -1,4 +1,4 @@
-namespace UVS.Authentication.Domain.Users;
+namespace UVS.Modules.Authentication.Domain.Users;
 
 public sealed class Role
 {

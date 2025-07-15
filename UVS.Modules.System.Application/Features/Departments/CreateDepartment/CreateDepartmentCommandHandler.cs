@@ -12,15 +12,20 @@ internal sealed class CreateDepartmentCommandHandler(IDepartmentRepository depar
 {
     public async Task<Result<Guid>> Handle(CreateDepartmentCommand request, CancellationToken cancellationToken)
     {
-        var userExists = await instructorRepository.GetByIdAsync(request.HeadId);
-        if (userExists==null && request.HeadId != Guid.Empty)
+        Instructor? head = null;
+        if (request.HeadId != null)
         {
-            return Result.Failure<Guid>(Error.NotFound("Instructor.NotFound",$"The instructor does not exist {request.HeadId}"));
+            head = await instructorRepository.GetByIdAsync(request.HeadId.Value);
         }
-        
-        var department = Department.Create(request.Name, request.HeadId, request.MaxCreditHoursPerSemester);
+
+        Department? department = null;
+
+        department = Department.Create(request.Name, head is null ? null : request.HeadId, request.MaxCreditHoursPerSemester);
+
         var deptId = await departmentRepository.CreateAsync(department);
+        
         await unitOfWork.SaveChangesAsync(cancellationToken);
+        
         return deptId;
     }
 }

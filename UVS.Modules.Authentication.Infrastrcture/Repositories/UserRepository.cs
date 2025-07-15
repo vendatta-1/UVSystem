@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Logging;
-using UVS.Authentication.Domain.Users;
-using UVS.Authentication.Infrastructure.Data;
 using UVS.Common.Application.Clock;
+using UVS.Modules.Authentication.Domain.Users;
+using UVS.Modules.Authentication.Infrastructure.Data;
 
-namespace UVS.Authentication.Infrastructure.Repositories;
+namespace UVS.Modules.Authentication.Infrastructure.Repositories;
 
 internal sealed class UserRepository(
     AuthDbContext dbContext,

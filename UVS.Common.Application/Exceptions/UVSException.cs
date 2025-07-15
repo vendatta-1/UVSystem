@@ -5,7 +5,7 @@ namespace UVS.Common.Application.Exceptions;
 public class UVSException:Exception
 {
     public UVSException(string requestName, Error? error = default, Exception? innerException = default)
-        : base("Application exception", innerException)
+        : base("Internal server error occured", innerException)
     {
         RequestName = requestName;
         Error = error;

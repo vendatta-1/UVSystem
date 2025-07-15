@@ -12,7 +12,7 @@ using UVS.Common.Infrastructure.Outbox;
 using UVS.Common.Infrastructure.Serialization;
 using UVS.Modules.System.Application.Data;
 
-namespace UVS.Authentication.Infrastructure.Outbox;
+namespace UVS.Modules.Authentication.Infrastructure.Outbox;
 
 [DisallowConcurrentExecution]
 public sealed class ProcessOutboxJob (

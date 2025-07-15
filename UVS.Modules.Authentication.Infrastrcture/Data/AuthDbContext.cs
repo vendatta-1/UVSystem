@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using UVS.Authentication.Domain.Users;
 using UVS.Common.Infrastructure.Inbox;
 using UVS.Common.Infrastructure.Outbox;
 using UVS.Modules.Authentication.Application.Abstractions.Data;
+using UVS.Modules.Authentication.Domain.Users;
 
-namespace UVS.Authentication.Infrastructure.Data;
+namespace UVS.Modules.Authentication.Infrastructure.Data;
 
 public sealed class AuthDbContext(DbContextOptions<AuthDbContext> options) :DbContext(options), IUnitOfWork
 {
@@ -14,6 +14,8 @@ public sealed class AuthDbContext(DbContextOptions<AuthDbContext> options) :DbCo
         modelBuilder.HasDefaultSchema("auth");
         modelBuilder.ApplyConfiguration(new InboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConsumerConfiguration());
+        modelBuilder.ApplyConfiguration(new OutboxMessageConsumerConfiguration());
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AuthDbContext).Assembly);
     }
 }

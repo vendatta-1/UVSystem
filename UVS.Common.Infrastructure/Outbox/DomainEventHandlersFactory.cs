@@ -27,7 +27,7 @@ public static class DomainEventHandlersFactory
 
         List<IDomainEventHandler> handlers = [];
 
-        foreach (Type handler in handlers)
+        foreach (var handler in domainEventHandlers)
         {
             object domainEventHandler = serviceProvider.GetRequiredService(handler);
             handlers.Add((domainEventHandler as IDomainEventHandler)!);

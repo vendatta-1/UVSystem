@@ -4,7 +4,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>UVS.Authentication.Domain</RootNamespace>
+        <RootNamespace>UVS.Modules.Authentication.Domain</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

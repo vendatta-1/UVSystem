@@ -1,12 +1,9 @@
 using System.Net;
-using Keycloak.Net;
-using Keycloak.Net.Models.Clients;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using UVS.Common.Domain;
 using UVS.Modules.Authentication.Application.Abstractions.Identity;
 
-namespace UVS.Authentication.Infrastructure.Identity;
+namespace UVS.Modules.Authentication.Infrastructure.Identity;
 
 internal sealed class IdentityProviderService(KeyCloakClient keyCloakClient, ILogger<IdentityProviderService> logger) : IIdentityProviderService
 {

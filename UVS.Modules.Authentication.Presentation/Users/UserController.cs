@@ -5,9 +5,8 @@ using UVS.Common.Presentation.Endpoints;
 using UVS.Common.Presentation.Results;
 using UVS.Modules.Authentication.Application.Users.CreateRole;
 using UVS.Modules.Authentication.Application.Users.Register;
-using UVS.Modules.Authentication.Application.Users.UpdateUser;
 
-namespace UVS.Authentication.Presentation.Users;
+namespace UVS.Modules.Authentication.Presentation.Users;
 
 [ApiController]
 [Route("api/[controller]")]

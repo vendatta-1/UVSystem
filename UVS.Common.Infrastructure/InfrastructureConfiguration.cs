@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
+using Quartz;
 using StackExchange.Redis;
 using UVS.Common.Application.Caching;
 using UVS.Common.Application.Clock;
@@ -30,7 +31,13 @@ public static class InfrastructureConfiguration
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 
         services.TryAddSingleton<InsertOutboxMessagesInterceptor>();
+        
         services.AddAuthenticationInternal();
+
+        services.AddQuartz();
+        
+        services.AddQuartzHostedService(x=>x.WaitForJobsToComplete=true);
+        
         try
         {
             IConnectionMultiplexer connectionMultiplexer =

@@ -11,7 +11,7 @@ using UVS.Common.Infrastructure.Inbox;
 using UVS.Common.Infrastructure.Serialization;
 using UVS.Modules.System.Application.Data;
 
-namespace UVS.Authentication.Infrastructure.Inbox;
+namespace UVS.Modules.Authentication.Infrastructure.Inbox;
 
 
 
@@ -41,15 +41,14 @@ public sealed class ProcessInboxJob (
                     message.Content,
                     SerializerSettings.Instance)!;
                 
-                var handlers = IntegrationEventHandlersFactory.GetHandlers(message.GetType(),
+                var handlers = IntegrationEventHandlersFactory.GetHandlers(integrationEvent.GetType(),
                     scope.ServiceProvider,
-                    Modules.Authentication.Application.AssemblyReference.Assembly);
+                    Presentation.AssemblyReference.Assembly);
                 
                 foreach (var handler in handlers)
                 {
                     await handler.Handle(integrationEvent);
                 }
-                
                 
             }
             catch (Exception caughtException)
@@ -72,11 +71,10 @@ public sealed class ProcessInboxJob (
     {
         var sql = $"""
                    SELECT 
-                        id as {nameof(InboxMessageResponse.Id)}
+                        id as {nameof(InboxMessageResponse.Id)},
                         content as {nameof(InboxMessageResponse.Content)}
                         FROM auth.inbox_messages
-                        WHERE 
-                            WHERE processed_on_utc IS NULL
+                        WHERE processed_on_utc IS NULL
                             ORDER BY occurred_on_utc
                         LIMIT {options.Value.BatchSize}
                         FOR UPDATE
@@ -89,9 +87,8 @@ public sealed class ProcessInboxJob (
     {
         var sql = $"""
                    UPDATE auth.inbox_messages
-                        SET processed_on_utc =@processed_on_utc,
-                            error = @error,
-                        WHERE id = @id";"
+                        SET processed_on_utc = @processed_on_utc, error = @error
+                        WHERE id = @id
                    """;
         var result =await dbConnection.ExecuteAsync(sql, new
         {

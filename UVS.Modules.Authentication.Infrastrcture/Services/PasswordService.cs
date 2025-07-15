@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using UVS.Modules.Authentication.Application.Service;
 
-namespace UVS.Authentication.Infrastructure.Services;
+namespace UVS.Modules.Authentication.Infrastructure.Services;
 
 public sealed class PasswordService : IPasswordService
 {

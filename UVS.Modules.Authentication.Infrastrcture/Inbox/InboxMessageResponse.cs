@@ -1,4 +1,4 @@
-namespace UVS.Authentication.Infrastructure.Inbox;
+namespace UVS.Modules.Authentication.Infrastructure.Inbox;
 
 public sealed class InboxMessageResponse(Guid  id, string content)
 {

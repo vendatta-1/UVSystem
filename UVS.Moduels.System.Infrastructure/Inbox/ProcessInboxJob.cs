@@ -1,5 +1,4 @@
-using System.Data;
-using System.Transactions;
+using System.Data; 
 using Dapper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -11,7 +10,7 @@ using UVS.Common.Application.EventBus;
 using UVS.Common.Infrastructure.Inbox;
 using UVS.Common.Infrastructure.Serialization;
 using UVS.Modules.System.Application.Data;
-
+using UVS.Modules.System.Presentation;
 namespace UVS.Modules.System.Infrastructure.Inbox;
 
 
@@ -42,9 +41,9 @@ public sealed class ProcessInboxJob (
                     message.Content,
                     SerializerSettings.Instance)!;
                 
-                var handlers = IntegrationEventHandlersFactory.GetHandlers(message.GetType(),
+                var handlers = IntegrationEventHandlersFactory.GetHandlers(integrationEvent.GetType(),
                     scope.ServiceProvider,
-                    Application.AssemblyReference.Assembly);
+                Presentation.AssemblyReference.Assembly);
                 
                 foreach (var handler in handlers)
                 {

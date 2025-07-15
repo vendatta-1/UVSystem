@@ -14,7 +14,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\UVS.Common.Presentation\UVS.Common.Presentation.csproj" />
-      <ProjectReference Include="..\UVS.Moduels.System.Infrastructure\UVS.Moduels.System.Infrastructure.csproj" />
       <ProjectReference Include="..\UVS.Modules.System.Application\UVS.Modules.System.Application.csproj" />
     </ItemGroup>
 

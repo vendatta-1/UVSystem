@@ -55,7 +55,7 @@ where TDomainEvent : IDomainEvent
     {
         const string sql =
             """
-            INSERT INTO events.outbox_message_consumers(outbox_message_id, name)
+            INSERT INTO system.outbox_message_consumers(outbox_message_id, name)
             VALUES (@OutboxMessageId, @Name)
             """;
 

@@ -12,8 +12,21 @@ public class GetStudentQueryHandler(IStudentRepository repository,IMapper mapper
     public async Task<Result<StudentResponse>> Handle(GetStudentQuery request, CancellationToken cancellationToken)
     {
         var result =await repository.GetByIdAsync(request.StudentId);
-        
-        var studentResponse = mapper.Map<StudentResponse>(result);
+        if (result == null)
+        {
+            return Result.Failure<StudentResponse>(Error.NotFound("Student.NotFound", $"the student {request.StudentId} was not found"));
+        }
+        var studentResponse = new StudentResponse()
+        {
+            FirstName = result.FullName.Split(' ').First(),
+            LastName = result.FullName.Split(' ').Last(),
+            Email = result.Email,
+            DepartmentId = result.DepartmentId,
+            DateOfBirth = result.DateOfBirth,
+            Gender = result.Gender,
+            NationalId = result.NationalId,
+            Phone = result.Phone
+        };
         
         return studentResponse;
     }

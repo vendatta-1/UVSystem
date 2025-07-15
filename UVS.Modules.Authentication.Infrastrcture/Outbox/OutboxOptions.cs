@@ -1,4 +1,4 @@
-namespace UVS.Authentication.Infrastructure.Outbox;
+namespace UVS.Modules.Authentication.Infrastructure.Outbox;
 
 public sealed class OutboxOptions
 {

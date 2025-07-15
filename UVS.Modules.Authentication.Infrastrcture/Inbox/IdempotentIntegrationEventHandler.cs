@@ -4,7 +4,7 @@ using UVS.Common.Application.EventBus;
 using UVS.Common.Infrastructure.Inbox;
 using UVS.Modules.System.Application.Data;
 
-namespace UVS.Authentication.Infrastructure.Inbox;
+namespace UVS.Modules.Authentication.Infrastructure.Inbox;
 
 internal sealed class IdempotentIntegrationEventHandler<TIntegrationEvent>(
     IIntegrationEventHandler<TIntegrationEvent> decorated,

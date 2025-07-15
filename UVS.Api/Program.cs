@@ -6,6 +6,7 @@ using UVS.Api.Middleware;
 using UVS.Authentication.Infrastructure;
 using UVS.Common.Application;
 using UVS.Common.Infrastructure;
+using UVS.Modules.Authentication.Infrastructure;
 using UVS.Modules.System.Infrastructure;
 using UVS.Modules.System.Presentation;
 

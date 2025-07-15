@@ -27,7 +27,7 @@ public class StudentController(ISender sender) : UVSController
     {
         var result = await sender.Send(command);
 
-        return result.Match(Results.Created , ApiResults.Problem);
+        return result.Match(Results.Ok , ApiResults.Problem);
     }
 
     [HttpPost("[action]")]

@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
 using Newtonsoft.Json;
 
-namespace UVS.Authentication.Infrastructure.Identity;
+namespace UVS.Modules.Authentication.Infrastructure.Identity;
 
 internal sealed class KeyCloakClient(HttpClient httpClient)
 {

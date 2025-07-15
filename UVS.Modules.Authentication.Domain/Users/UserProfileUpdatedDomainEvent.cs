@@ -1,6 +1,6 @@
 using UVS.Common.Domain;
 
-namespace UVS.Authentication.Domain.Users;
+namespace UVS.Modules.Authentication.Domain.Users;
 
 public sealed class UserProfileUpdatedDomainEvent(Guid userId, string firstName, string lastName) : DomainEvent
 {

@@ -38,6 +38,6 @@ public class CreateStudentCommandHandler(IStudentRepository repository,IUnitOfWo
          
          await unitOfWork.SaveChangesAsync(cancellationToken);
 
-         return createResult;
+         return student.Id;
     }
 }

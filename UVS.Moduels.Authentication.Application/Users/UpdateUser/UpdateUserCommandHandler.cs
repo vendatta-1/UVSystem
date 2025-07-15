@@ -1,7 +1,7 @@
-﻿using UVS.Authentication.Domain.Users;
-using UVS.Common.Application.Messaging;
+﻿using UVS.Common.Application.Messaging;
 using UVS.Common.Domain;
 using UVS.Modules.Authentication.Application.Abstractions.Data;
+using UVS.Modules.Authentication.Domain.Users;
 
 namespace UVS.Modules.Authentication.Application.Users.UpdateUser;
 

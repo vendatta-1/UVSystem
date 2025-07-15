@@ -1,11 +1,11 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using UVS.Authentication.Infrastructure.Data;
 using UVS.Common.Application.Clock;
 using UVS.Common.Domain;
+using UVS.Modules.Authentication.Infrastructure.Data;
 
-namespace UVS.Authentication.Infrastructure.Repositories;
+namespace UVS.Modules.Authentication.Infrastructure.Repositories;
 
 internal class Repository<T>(AuthDbContext dbContext, ILogger<Repository<T>> logger, IDateTimeProvider dateTimeProvider)
     :IRepository<T> where T:AuditEntity

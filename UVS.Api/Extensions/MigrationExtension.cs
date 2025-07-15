@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UVS.Authentication.Infrastructure.Data;
+using UVS.Modules.Authentication.Infrastructure.Data;
 using UVS.Modules.System.Infrastructure.Data;
 
 namespace UVS.Api.Extensions;

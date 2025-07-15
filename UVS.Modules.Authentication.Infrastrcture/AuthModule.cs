@@ -1,24 +1,25 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using UVS.Authentication.Domain.Users;
-using UVS.Authentication.Infrastructure.Data;
-using UVS.Authentication.Infrastructure.Identity;
-using UVS.Authentication.Infrastructure.Inbox;
-using UVS.Authentication.Infrastructure.Outbox;
-using UVS.Authentication.Infrastructure.Repositories;
-using UVS.Authentication.Infrastructure.Services;
+using UVS.Common.Application.EventBus;
+using UVS.Common.Application.Messaging;
 using UVS.Common.Infrastructure.Outbox;
 using UVS.Modules.Authentication.Application.Abstractions.Data;
 using UVS.Modules.Authentication.Application.Abstractions.Identity;
 using UVS.Modules.Authentication.Application.Service;
+using UVS.Modules.Authentication.Domain.Users;
+using UVS.Modules.Authentication.Infrastructure.Data;
+using UVS.Modules.Authentication.Infrastructure.Identity;
+using UVS.Modules.Authentication.Infrastructure.Inbox;
+using UVS.Modules.Authentication.Infrastructure.Outbox;
+using UVS.Modules.Authentication.Infrastructure.Repositories;
+using UVS.Modules.Authentication.Infrastructure.Services;
 using UVS.Modules.System.Integration;
 
-namespace UVS.Authentication.Infrastructure;
+namespace UVS.Modules.Authentication.Infrastructure;
 
 public static class AuthModule
 {
@@ -26,7 +27,9 @@ public static class AuthModule
     {
         services.AddInfrastructure(configuration)
             .AddServices()
-            ;
+            .AddIntegrationEventHandlers()
+            .AddDomainEventHandlers();
+            
         return services;
     }
 
@@ -41,6 +44,8 @@ public static class AuthModule
         services.Configure<KeyCloakOptions>(configuration.GetSection("Users:KeyCloak"));
 
         services.AddTransient<KeyCloakAuthDelegatingHandler>();
+
+
 
         services
             .AddHttpClient<KeyCloakClient>((serviceProvider, httpClient) =>
@@ -84,6 +89,56 @@ public static class AuthModule
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.TryAddSingleton<IPasswordService, PasswordService>();
+        return services;
+    }
+    private static IServiceCollection AddDomainEventHandlers(this IServiceCollection services)
+    {
+        Type[] domainEventHandlers = Application.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IDomainEventHandler)))
+            .ToArray();
+
+        foreach (Type domainEventHandler in domainEventHandlers)
+        {
+            services.TryAddScoped(domainEventHandler);
+
+            Type domainEvent = domainEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
+
+            services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
+
+        return services;
+    }
+
+    private static IServiceCollection AddIntegrationEventHandlers(this IServiceCollection services)
+    {
+        Type[] integrationEventHandlers = Presentation.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IIntegrationEventHandler)))
+            .ToArray();
+
+        foreach (Type integrationEventHandler in integrationEventHandlers)
+        {
+            services.TryAddScoped(integrationEventHandler);
+
+            Type integrationEvent = integrationEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler =
+                typeof(IdempotentIntegrationEventHandler<>).MakeGenericType(integrationEvent);
+
+            services.Decorate(integrationEventHandler, closedIdempotentHandler);
+        }
+
         return services;
     }
 }

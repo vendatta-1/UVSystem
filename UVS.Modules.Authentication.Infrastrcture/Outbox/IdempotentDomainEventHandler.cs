@@ -7,7 +7,7 @@ using UVS.Common.Domain;
 using UVS.Common.Infrastructure.Outbox;
 using UVS.Modules.System.Application.Data;
 
-namespace UVS.Authentication.Infrastructure.Outbox;
+namespace UVS.Modules.Authentication.Infrastructure.Outbox;
 
 /// <summary>
 /// For adding idempotency to ensure that only one consumer is called only once and there is non duplication or do the same action twice

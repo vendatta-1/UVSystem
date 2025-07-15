@@ -1,4 +1,4 @@
-namespace UVS.Authentication.Infrastructure.Outbox;
+namespace UVS.Modules.Authentication.Infrastructure.Outbox;
 
 internal sealed class OutboxMessageResponse(Guid id, string content)
 {

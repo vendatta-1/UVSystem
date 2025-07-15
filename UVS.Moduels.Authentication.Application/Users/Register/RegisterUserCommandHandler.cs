@@ -3,9 +3,9 @@
 using Microsoft.Extensions.Logging; 
 using UVS.Common.Application.Messaging;
 using UVS.Common.Domain;
-using UVS.Authentication.Domain.Users;
 using UVS.Modules.Authentication.Application.Abstractions.Data;
 using UVS.Modules.Authentication.Application.Abstractions.Identity;
+using UVS.Modules.Authentication.Domain.Users;
 
 namespace UVS.Modules.Authentication.Application.Users.Register;
 

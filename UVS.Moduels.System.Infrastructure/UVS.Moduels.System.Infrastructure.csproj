@@ -10,6 +10,7 @@
     <ItemGroup>
       <ProjectReference Include="..\UVS.Modules.System.Application\UVS.Modules.System.Application.csproj" />
       <ProjectReference Include="..\UVS.Common.Infrastructure\UVS.Common.Infrastructure.csproj" />
+      <ProjectReference Include="..\UVS.Modules.System.Presentation\UVS.Modules.System.Presentation.csproj" />
     </ItemGroup>
 
     <ItemGroup>

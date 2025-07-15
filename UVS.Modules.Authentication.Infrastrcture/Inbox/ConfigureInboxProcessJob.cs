@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Options;
 using Quartz;
 
-namespace UVS.Authentication.Infrastructure.Inbox;
+namespace UVS.Modules.Authentication.Infrastructure.Inbox;
 
 internal class ConfigureInboxProcessJob(IOptions<InboxOptions> options) :
     IConfigureOptions<QuartzOptions>

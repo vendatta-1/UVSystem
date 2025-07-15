@@ -23,6 +23,6 @@ internal sealed class CreateStudentDomainEventHandler(
             result.Value.FirstName,
             result.Value.LastName,
             result.Value.Email 
-        ));
+        ),cancellationToken);
     }
 }

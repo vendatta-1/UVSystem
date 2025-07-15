@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Options;
 
-namespace UVS.Authentication.Infrastructure.Identity;
+namespace UVS.Modules.Authentication.Infrastructure.Identity;
 
 internal sealed class KeyCloakAuthDelegatingHandler(IOptions<KeyCloakOptions> options) : DelegatingHandler
 {
