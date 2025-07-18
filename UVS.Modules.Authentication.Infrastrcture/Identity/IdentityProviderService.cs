@@ -80,9 +80,11 @@ internal sealed class IdentityProviderService(KeyCloakClient keyCloakClient, ILo
         throw new NotImplementedException();
     }
 
-    public Task<Result<string>> LoginAsync(LoginModel model, CancellationToken cancellationToken = default)
+    public  async Task<Result<string>> LoginAsync(LoginModel model, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var token = await keyCloakClient.LoginAsync(new LoginRepresentation(model.Email, model.Password), cancellationToken);
+
+        return token;
     }
 
     public Task<Result> LogoutAsync(CancellationToken cancellationToken = default)

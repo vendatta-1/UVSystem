@@ -50,7 +50,7 @@ internal sealed class KeyCloakAuthDelegatingHandler(IOptions<KeyCloakOptions> op
 
     internal sealed class AuthToken
     {
-        [JsonPropertyName("access_token")]
+        [JsonPropertyName("access_token")] //there is a diff between JsonProperty and that, this belongs to System lib, but JsonProperty Belongs to NewtonSoft
         
         public string AccessToken { get; init; }
     }

@@ -1,10 +1,14 @@
 ﻿using System.Net.Http.Json;
+using System.Text.Json.Serialization;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using UVS.Modules.Authentication.Application.Abstractions.Identity;
 
 namespace UVS.Modules.Authentication.Infrastructure.Identity;
 
-internal sealed class KeyCloakClient(HttpClient httpClient)
+internal sealed class KeyCloakClient(HttpClient httpClient, IOptions<KeyCloakOptions> options)
 {
+    private readonly KeyCloakOptions keyOptions=options.Value;
 
     internal async Task<string> GetRoleIdAsync(string roleName, CancellationToken cancellationToken)
     {
@@ -66,6 +70,31 @@ internal sealed class KeyCloakClient(HttpClient httpClient)
         return ExtractIdentityIdFromLocationHeader(httpResponseMessage);
     }
 
+    internal async Task<string> LoginAsync(LoginRepresentation model, CancellationToken cancellationToken = default)
+    {
+        var authRequestParameters = new KeyValuePair<string, string>[]
+        {
+            new("client_id", keyOptions.PublicClientId),
+            new("username", model.Username),
+            new("password", model.Password),
+            new("scope", "email openid"),
+            new("grant_type", "password"),
+        };
+        
+        using var authRequestContent = new FormUrlEncodedContent(authRequestParameters);
+        
+        using var authRequestMessage= new HttpRequestMessage(HttpMethod.Post, new Uri(keyOptions.TokenUrl));
+
+        authRequestMessage.Content = authRequestContent;
+        HttpResponseMessage httpResponseMessage= await httpClient.SendAsync(authRequestMessage, cancellationToken);
+        
+        httpResponseMessage.EnsureSuccessStatusCode();
+
+        var token = await httpResponseMessage.Content.ReadFromJsonAsync<AccessToken>(cancellationToken);
+
+        return token?.Token?? throw new ApplicationException($"this user couldn't be authenticated");
+
+    }
     private static string ExtractIdentityIdFromLocationHeader(
         HttpResponseMessage httpResponseMessage)
     {
@@ -90,5 +119,12 @@ internal sealed class KeyCloakClient(HttpClient httpClient)
 }
 internal class RoleIdRepresentation
 {
-    [JsonProperty("id")] public string Id { get; set; } = null!;
+    [JsonProperty("id")] 
+    public string Id { get; set; } = null!;
+}
+
+internal class AccessToken
+{
+    [JsonPropertyName("access_token")]
+    public string Token { get; set; } = null!;
 }
