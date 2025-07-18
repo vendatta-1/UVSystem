@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UVS.Common.Presentation.Endpoints;
 using UVS.Common.Presentation.Results;
-using UVS.Modules.Authentication.Application.Users.CreateRole;
+using UVS.Modules.Authentication.Application.Identity.CreateRole;
 using UVS.Modules.Authentication.Application.Users.Register;
 
 namespace UVS.Modules.Authentication.Presentation.Users;

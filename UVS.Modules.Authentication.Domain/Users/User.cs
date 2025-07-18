@@ -26,7 +26,7 @@ public sealed class User : AuditEntity
             IdentityId = identityId,
         };
         user._roles.Add(role);
-        user.Raise(new UserRegisteredDomainEvent(user.Id,Guid.Parse(user.IdentityId)));
+        user.Raise(new UserRegisteredDomainEvent(user.Id,user.IdentityId, role.Name));
         return user;
     }
 

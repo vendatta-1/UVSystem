@@ -9,14 +9,33 @@ internal sealed class KeyCloakClient(HttpClient httpClient)
     internal async Task<string> GetRoleIdAsync(string roleName, CancellationToken cancellationToken)
     {
         
-        HttpResponseMessage response = await httpClient.GetAsync($"api/roles/{roleName}", cancellationToken);
+        HttpResponseMessage response = await httpClient.GetAsync($"roles/{roleName}", cancellationToken);
         
         response.EnsureSuccessStatusCode();
         
-        var result =await response.Content.ReadFromJsonAsync<RoleIdRepresentation>(cancellationToken);
+        var result = await response.Content.ReadFromJsonAsync<RoleIdRepresentation>(cancellationToken);
+        
         var id = result is null?throw new ApplicationException("Could not get role id"):result.Id;
 
         return result.Id;
+    }
+
+    internal async Task AssignRoleAsync( string roleName , string identityId, CancellationToken cancellationToken = default)
+    {
+        var roleId = await  GetRoleIdAsync(roleName, cancellationToken);
+        var roleRepresentation = new AssignRoleRepresentation()
+        {
+            Id = Guid.Parse(roleId),
+            Name = roleName
+        };
+        var requestContent = new List<AssignRoleRepresentation>()
+        {
+            roleRepresentation
+        };
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync($"users/{identityId}/role-mappings/realm",requestContent, cancellationToken);
+        
+        response.EnsureSuccessStatusCode();
+        
     }
     internal async Task<string> CreateRoleAsync(CreateRoleRepresentation role, CancellationToken cancellationToken = default)
     {

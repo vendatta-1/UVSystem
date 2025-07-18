@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using UVS.Common.Application.Authorization;
 using UVS.Common.Application.EventBus;
 using UVS.Common.Application.Messaging;
 using UVS.Common.Infrastructure.Outbox;
@@ -11,6 +12,7 @@ using UVS.Modules.Authentication.Application.Abstractions.Data;
 using UVS.Modules.Authentication.Application.Abstractions.Identity;
 using UVS.Modules.Authentication.Application.Service;
 using UVS.Modules.Authentication.Domain.Users;
+using UVS.Modules.Authentication.Infrastructure.Authorization;
 using UVS.Modules.Authentication.Infrastructure.Data;
 using UVS.Modules.Authentication.Infrastructure.Identity;
 using UVS.Modules.Authentication.Infrastructure.Inbox;
@@ -40,11 +42,14 @@ public static class AuthModule
 
     private static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IRoleService, RoleService>();
+        
         services.AddScoped<IUserRepository, UserRepository>();
+        
         services.Configure<KeyCloakOptions>(configuration.GetSection("Users:KeyCloak"));
 
         services.AddTransient<KeyCloakAuthDelegatingHandler>();
-
+        
 
 
         services
@@ -58,6 +63,7 @@ public static class AuthModule
             .AddHttpMessageHandler<KeyCloakAuthDelegatingHandler>();
 
         services.AddTransient<IIdentityProviderService, IdentityProviderService>();
+
 
         services.AddDbContext<AuthDbContext>((sp, opt) =>
         {

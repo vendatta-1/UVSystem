@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace UVS.Common.Infrastructure.Authentication;
 
@@ -8,7 +9,13 @@ internal static class AuthenticationExtensions
     {
         services.AddAuthorization();
 
-        services.AddAuthentication().AddJwtBearer();
+        services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                
+            })
+            .AddJwtBearer();
 
         services.AddHttpContextAccessor();
 

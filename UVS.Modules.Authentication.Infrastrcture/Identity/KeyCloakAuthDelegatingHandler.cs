@@ -5,7 +5,8 @@ using Microsoft.Extensions.Options;
 
 namespace UVS.Modules.Authentication.Infrastructure.Identity;
 
-internal sealed class KeyCloakAuthDelegatingHandler(IOptions<KeyCloakOptions> options) : DelegatingHandler
+internal sealed class KeyCloakAuthDelegatingHandler(IOptions<KeyCloakOptions> options) :
+    DelegatingHandler
 {
     private readonly KeyCloakOptions _options = options.Value;
 

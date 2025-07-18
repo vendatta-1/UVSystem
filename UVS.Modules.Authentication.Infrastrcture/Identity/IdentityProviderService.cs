@@ -44,6 +44,21 @@ internal sealed class IdentityProviderService(KeyCloakClient keyCloakClient, ILo
             return Result.Failure<string>(new Error("Role.NotFound", e.Message, ErrorType.NotFound));
         }   
     }
+
+    public async Task<Result> AssignRoleAsync(string roleName ,string identityId, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            await keyCloakClient.AssignRoleAsync(roleName, identityId, cancellationToken);
+            return Result.Success();
+        }
+        catch (Exception e)
+        {
+              return Result.Failure(Error.Failure("AssignRole.Failure", e.Message));
+        }
+        
+    }
+
     public async Task<Result<string>> CreateRoleAsync(RoleModel role, CancellationToken cancellationToken = default)
     
     {
@@ -65,7 +80,7 @@ internal sealed class IdentityProviderService(KeyCloakClient keyCloakClient, ILo
         throw new NotImplementedException();
     }
 
-    public Task<Result> LoginAsync(LoginModel model, CancellationToken cancellationToken = default)
+    public Task<Result<string>> LoginAsync(LoginModel model, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }

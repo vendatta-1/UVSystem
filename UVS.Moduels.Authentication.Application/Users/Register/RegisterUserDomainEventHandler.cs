@@ -5,13 +5,20 @@ using UVS.Modules.Authentication.Domain.Users;
 
 namespace UVS.Modules.Authentication.Application.Users.Register;
 
-internal sealed class RegisterUserDomainEventHandler(IIdentityProviderService providerService):
+internal sealed class RegisterUserDomainEventHandler(IIdentityProviderService identityProviderService):
     DomainEventHandler<UserRegisteredDomainEvent>
 {
     public override async Task Handle(UserRegisteredDomainEvent domainEvent,
         CancellationToken cancellationToken)
-    { 
-        var id = await providerService.GetRoleIdAsync(Role.Student.Name, cancellationToken);
+    {
+ 
+        var mapRoleResult = await identityProviderService.AssignRoleAsync(domainEvent.RoleName, domainEvent.IdentityId, cancellationToken);
+
+        if (mapRoleResult.IsFailure)
+        {
+            throw new ApplicationException("Could not assign role");
+        }
         
+
     }
 }

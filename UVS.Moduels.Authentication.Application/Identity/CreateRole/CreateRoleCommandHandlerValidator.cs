@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace UVS.Modules.Authentication.Application.Users.CreateRole;
+namespace UVS.Modules.Authentication.Application.Identity.CreateRole;
 
 internal  sealed class CreateRoleCommandHandlerValidator:AbstractValidator<CreateRoleCommand>
 {

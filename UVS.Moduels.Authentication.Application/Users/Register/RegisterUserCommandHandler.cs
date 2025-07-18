@@ -27,7 +27,7 @@ internal sealed class RegisterUserCommandHandler(
             return Result.Failure<Guid>(result.Error);
         }
 
-        var user = User.Create(request.Email, request.FirstName, request.LastName, result.Value, request.Role);
+        var user = User.Create(request.FirstName, request.LastName, request.Email, result.Value, request.Role);
 
         await userRepository.CreateAsync(user);
 

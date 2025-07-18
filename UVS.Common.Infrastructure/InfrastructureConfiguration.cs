@@ -9,6 +9,7 @@ using UVS.Common.Application.Caching;
 using UVS.Common.Application.Clock;
 using UVS.Common.Application.EventBus;
 using UVS.Common.Infrastructure.Authentication;
+using UVS.Common.Infrastructure.Authorization;
 using UVS.Common.Infrastructure.Caching;
 using UVS.Common.Infrastructure.Clock;
 using UVS.Common.Infrastructure.Data;
@@ -22,6 +23,11 @@ public static class InfrastructureConfiguration
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration,
         Action<IRegistrationConfigurator>[] moduleConfigureConsumers)
     {
+        
+        services.AddAuthenticationInternal();
+
+        services.AddAuthorizationInternal();
+        
         NpgsqlDataSource dataSource = NpgsqlDataSource.Create(configuration.GetConnectionString("UVS")!);
 
         services.TryAddSingleton(dataSource);
@@ -32,7 +38,6 @@ public static class InfrastructureConfiguration
 
         services.TryAddSingleton<InsertOutboxMessagesInterceptor>();
         
-        services.AddAuthenticationInternal();
 
         services.AddQuartz();
         

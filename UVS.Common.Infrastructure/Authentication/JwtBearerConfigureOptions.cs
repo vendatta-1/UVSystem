@@ -11,7 +11,8 @@ internal sealed class JwtBearerConfigureOptions(IConfiguration configuration)
 
     public void Configure(JwtBearerOptions options)
     {
-        configuration.GetSection(ConfigurationSectionName).Bind(options);
+        configuration.GetSection(ConfigurationSectionName).
+            Bind(options);
     }
 
     public void Configure(string? name, JwtBearerOptions options)

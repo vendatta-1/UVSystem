@@ -2,7 +2,7 @@ using UVS.Common.Application.Messaging;
 using UVS.Common.Domain;
 using UVS.Modules.Authentication.Application.Abstractions.Identity;
 
-namespace UVS.Modules.Authentication.Application.Users.CreateRole;
+namespace UVS.Modules.Authentication.Application.Identity.CreateRole;
 
 public sealed class CreateRoleCommandHandler(IIdentityProviderService identityProvider):ICommandHandler<CreateRoleCommand, string>
 {
