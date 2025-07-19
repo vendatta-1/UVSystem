@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>UVS.Modules.Authentication.Presentation</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Common\UVS.Common.Presentation\UVS.Common.Presentation.csproj" />
+      <ProjectReference Include="..\..\System\UVS.Modules.System.Integration\UVS.Modules.System.Integration.csproj" />
+      <ProjectReference Include="..\UVS.Moduels.Authentication.Application\UVS.Moduels.Authentication.Application.csproj" />
+    </ItemGroup>
+
+ 
+
+</Project>

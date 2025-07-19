@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>UVS.Modules.Authentication.Application</RootNamespace>
+    </PropertyGroup>
+
+    
+
+
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.1.66" />
+    </ItemGroup>
+
+    
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Common\UVS.Common.Application\UVS.Common.Application.csproj" />
+      <ProjectReference Include="..\UVS.Modules.Authentication.Domain\UVS.Modules.Authentication.Domain.csproj" />
+      <ProjectReference Include="..\UVS.Modules.Authentication.IntgerationEvents\UVS.Modules.Authentication.IntgerationEvents.csproj" />
+    </ItemGroup>
+
+</Project>
