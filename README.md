@@ -3,7 +3,7 @@
 UVSystem is a **modular, production-ready backend system** built with **ASP.NET Core 9**, **Domain-Driven Design (DDD)**, and **Modular Monolith Architecture**.  
 It integrates key modern software engineering practices like authentication with **Keycloak**, **PostgreSQL** for persistent storage, **distributed caching**, and **reliable messaging** through the **Inbox/Outbox** pattern.
 
-![Architecture Diagram Placeholder](./docs/images/architecture-diagram.png)
+![Architecture Diagram Placeholder]([./docs/images/architecture-diagram.png](https://www.google.com/url?sa=i&url=https%3A%2F%2Fnewsletter.techworld-with-milan.com%2Fp%2Fwhat-is-a-modular-monolith&psig=AOvVaw1EuUDezkrSTBZvDGk8Nqh3&ust=1753029384454000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNj4r8CtyY4DFQAAAAAdAAAAABAL))
 
 ---
 
