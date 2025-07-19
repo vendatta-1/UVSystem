@@ -19,6 +19,7 @@ internal sealed class IntegrationEventConsumer<TIntegrationEvent>
     public async Task Consume(ConsumeContext<TIntegrationEvent> context)
     { 
         logger.LogInformation("{Module} - Consuming integration event: {IntegrationEventId}","System", context.Message.Id);
+        
         await using var connection = await dbConnectionFactory.OpenConnectionAsync();
         
         var integrationEvent = context.Message;
@@ -30,10 +31,12 @@ internal sealed class IntegrationEventConsumer<TIntegrationEvent>
             Content = JsonConvert.SerializeObject(integrationEvent, SerializerSettings.Instance),
             OccurredOnUtc = integrationEvent.OccurredOnUtc,
         };
+        
         var sql = $"""
                    INSERT INTO auth.inbox_messages(id, type, content, occurred_on_utc)
                    VALUES(@Id, @Type, @Content::json, @OccurredOnUtc);
                    """;
+                   
         await connection.ExecuteAsync(sql, inboxMessage);
     }
 }
