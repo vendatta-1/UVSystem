@@ -28,7 +28,7 @@ UVSystem/
 
 > This is the **main entry point** to run the entire backend system locally.
 
-🔗 [Download `docker-compose.yml`](./docker-compose.yml) or use:
+🔗 [Download `docker-compose.yml`](./compose.yml) or use:
 
 ```bash
 docker compose up --build
