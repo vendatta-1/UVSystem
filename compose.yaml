@@ -3,7 +3,7 @@
     image: uvs.api
     build:
       context: .
-      dockerfile: UVS.Api/Dockerfile
+      dockerfile: src/Api/UVS.Api/Dockerfile
     depends_on:
       - uvs.database
     ports:

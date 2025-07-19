@@ -1,10 +1,10 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Module.System.Domain", "UVS.Module.System.Domain\UVS.Module.System.Domain.csproj", "{8D21C256-27CB-453F-806C-5F749F5D8847}"
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Module.System.Domain", "src\Modules\System\UVS.Module.System.Domain\UVS.Module.System.Domain.csproj", "{8D21C256-27CB-453F-806C-5F749F5D8847}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Application", "UVS.Modules.System.Application\UVS.Modules.System.Application.csproj", "{193BF00F-E60B-44C0-9B44-522B5D82CA5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Application", "src\Modules\System\UVS.Modules.System.Application\UVS.Modules.System.Application.csproj", "{193BF00F-E60B-44C0-9B44-522B5D82CA5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Moduels.System.Infrastructure", "UVS.Moduels.System.Infrastructure\UVS.Moduels.System.Infrastructure.csproj", "{5A48450D-87F6-4267-95EC-1DE4FE55F7D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Moduels.System.Infrastructure", "src\Modules\System\UVS.Moduels.System.Infrastructure\UVS.Moduels.System.Infrastructure.csproj", "{5A48450D-87F6-4267-95EC-1DE4FE55F7D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{31A24C11-6B45-4FD3-8518-DD14F59046B9}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,13 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "System", "System", "{D41608
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{9FE36527-9B11-483B-AED8-FAFF96B9EC41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.Authentication.Domain", "UVS.Modules.Authentication.Domain\UVS.Modules.Authentication.Domain.csproj", "{A22E5C4D-9333-4F5E-B243-DF52420807AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.Authentication.Domain", "src\Modules\Authentication\UVS.Modules.Authentication.Domain\UVS.Modules.Authentication.Domain.csproj", "{A22E5C4D-9333-4F5E-B243-DF52420807AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Moduels.Authentication.Application", "UVS.Moduels.Authentication.Application\UVS.Moduels.Authentication.Application.csproj", "{EFECBE83-558F-4380-8D3D-3565A5EB5289}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Moduels.Authentication.Application", "src\Modules\Authentication\UVS.Moduels.Authentication.Application\UVS.Moduels.Authentication.Application.csproj", "{EFECBE83-558F-4380-8D3D-3565A5EB5289}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.Authentication.Infrastrcture", "UVS.Modules.Authentication.Infrastrcture\UVS.Modules.Authentication.Infrastrcture.csproj", "{4CB10F1E-B5DE-4D49-B7A4-EF3AFFAE2D0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.Authentication.Infrastrcture", "src\Modules\Authentication\UVS.Modules.Authentication.Infrastrcture\UVS.Modules.Authentication.Infrastrcture.csproj", "{4CB10F1E-B5DE-4D49-B7A4-EF3AFFAE2D0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.Authentication.Presentation", "UVS.Modules.Authentication.Presentation\UVS.Modules.Authentication.Presentation.csproj", "{0135FA51-AA9B-4860-B87B-390C1415A041}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.Authentication.Presentation", "src\Modules\Authentication\UVS.Modules.Authentication.Presentation\UVS.Modules.Authentication.Presentation.csproj", "{0135FA51-AA9B-4860-B87B-390C1415A041}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{716226F0-4149-4869-9F46-B74399F07EF3}"
 EndProject
@@ -31,22 +31,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{6AD9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E4D386F7-F42F-40DF-88F4-1C07A7481D78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Common.Application", "UVS.Common.Application\UVS.Common.Application.csproj", "{F0DFFD83-6992-4FAB-A309-6280B8202C09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Common.Application", "src\Common\UVS.Common.Application\UVS.Common.Application.csproj", "{F0DFFD83-6992-4FAB-A309-6280B8202C09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Common.Domain", "UVS.Common.Domain\UVS.Common.Domain.csproj", "{A9778F1B-3A7E-49D5-9925-141FC60D6A2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Common.Domain", "src\Common\UVS.Common.Domain\UVS.Common.Domain.csproj", "{A9778F1B-3A7E-49D5-9925-141FC60D6A2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Common.Infrastructure", "UVS.Common.Infrastructure\UVS.Common.Infrastructure.csproj", "{810DFCEB-1B3B-45B2-8467-C9401A775206}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Common.Infrastructure", "src\Common\UVS.Common.Infrastructure\UVS.Common.Infrastructure.csproj", "{810DFCEB-1B3B-45B2-8467-C9401A775206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Api", "UVS.Api\UVS.Api.csproj", "{AECCC6F2-6210-4749-9FB9-BDB6428BE506}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Api", "src\Api\UVS.Api\UVS.Api.csproj", "{AECCC6F2-6210-4749-9FB9-BDB6428BE506}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Presentation", "UVS.Modules.System.Presentation\UVS.Modules.System.Presentation.csproj", "{7FD677EA-2146-44F7-817F-A3C9D41083E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Presentation", "src\Modules\System\UVS.Modules.System.Presentation\UVS.Modules.System.Presentation.csproj", "{7FD677EA-2146-44F7-817F-A3C9D41083E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Common.Presentation", "UVS.Common.Presentation\UVS.Common.Presentation.csproj", "{67CCFD78-E9AD-4FC9-80D6-A3FD71C6E2A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Common.Presentation", "src\Common\UVS.Common.Presentation\UVS.Common.Presentation.csproj", "{67CCFD78-E9AD-4FC9-80D6-A3FD71C6E2A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.Authentication.IntgerationEvents", "UVS.Modules.Authentication.IntgerationEvents\UVS.Modules.Authentication.IntgerationEvents.csproj", "{3E40E853-E65C-41E3-8E16-5E037E7396C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.Authentication.IntgerationEvents", "src\Modules\Authentication\UVS.Modules.Authentication.IntgerationEvents\UVS.Modules.Authentication.IntgerationEvents.csproj", "{3E40E853-E65C-41E3-8E16-5E037E7396C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Integration", "UVS.Modules.System.Integration\UVS.Modules.System.Integration.csproj", "{7717D506-1FCB-4B1A-B67F-B86B73A4FE56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Integration", "src\Modules\System\UVS.Modules.System.Integration\UVS.Modules.System.Integration.csproj", "{7717D506-1FCB-4B1A-B67F-B86B73A4FE56}"
 EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
