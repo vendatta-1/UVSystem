@@ -9,7 +9,7 @@ using UVS.Common.Infrastructure.Authentication;
 namespace UVS.Common.Infrastructure.Authorization;
 
 internal sealed class CustomClaimsTransformation(IServiceScopeFactory scopeFactory)
-    :IClaimsTransformation
+    : IClaimsTransformation
 {
     public async Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
     {

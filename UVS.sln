@@ -1,10 +1,10 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Module.System.Domain", "src\Modules\System\UVS.Module.System.Domain\UVS.Module.System.Domain.csproj", "{8D21C256-27CB-453F-806C-5F749F5D8847}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Domain", "src\Modules\System\UVS.Modules.System.Domain\UVS.Modules.System.Domain.csproj", "{8D21C256-27CB-453F-806C-5F749F5D8847}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Application", "src\Modules\System\UVS.Modules.System.Application\UVS.Modules.System.Application.csproj", "{193BF00F-E60B-44C0-9B44-522B5D82CA5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Moduels.System.Infrastructure", "src\Modules\System\UVS.Moduels.System.Infrastructure\UVS.Moduels.System.Infrastructure.csproj", "{5A48450D-87F6-4267-95EC-1DE4FE55F7D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UVS.Modules.System.Infrastructure", "src\Modules\System\UVS.Modules.System.Infrastructure\UVS.Modules.System.Infrastructure.csproj", "{5A48450D-87F6-4267-95EC-1DE4FE55F7D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{31A24C11-6B45-4FD3-8518-DD14F59046B9}"
 	ProjectSection(SolutionItems) = preProject

@@ -29,7 +29,7 @@
  
     <ItemGroup>
       <ProjectReference Include="..\..\Modules\Authentication\UVS.Modules.Authentication.Infrastrcture\UVS.Modules.Authentication.Infrastrcture.csproj" />
-      <ProjectReference Include="..\..\Modules\System\UVS.Moduels.System.Infrastructure\UVS.Moduels.System.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\Modules\System\UVS.Modules.System.Infrastructure\UVS.Modules.System.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
