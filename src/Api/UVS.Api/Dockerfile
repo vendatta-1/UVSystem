@@ -24,7 +24,7 @@ COPY ["src/Modules/Authentication/UVS.Modules.Authentication.Domain/UVS.Modules.
 COPY ["src/Modules/Authentication/UVS.Modules.Authentication.Infrastrcture/UVS.Modules.Authentication.Infrastrcture.csproj", "src/Modules/Authentication/UVS.Modules.Authentication.Infrastrcture/"]
 RUN dotnet restore "src/Api/UVS.Api/UVS.Api.csproj"
 COPY . .
-WORKDIR "/src/src/Api/UVS.Api"
+WORKDIR "/src/Api/UVS.Api"
 RUN dotnet build "./UVS.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
