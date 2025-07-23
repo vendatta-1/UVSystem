@@ -24,7 +24,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Common\UVS.Common.Application\UVS.Common.Application.csproj" />
-      <ProjectReference Include="..\UVS.Module.System.Domain\UVS.Module.System.Domain.csproj" />
+      <ProjectReference Include="..\UVS.Modules.System.Domain\UVS.Modules.System.Domain.csproj" />
       <ProjectReference Include="..\UVS.Modules.System.Integration\UVS.Modules.System.Integration.csproj" />
     </ItemGroup>
 
