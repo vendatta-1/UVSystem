@@ -44,8 +44,11 @@ COPY ["Common/UVS.Common.Application/UVS.Common.Application.csproj", "Common/UVS
 COPY ["Common/UVS.Common.Domain/UVS.Common.Domain.csproj", "Common/UVS.Common.Domain/"]
 COPY ["Modules/Authentication/UVS.Modules.Authentication.Infrastrcture/UVS.Modules.Authentication.Infrastrcture.csproj", "Modules/Authentication/UVS.Modules.Authentication.Infrastrcture/"]
 COPY ["Modules/System/UVS.Modules.System.Application/UVS.Modules.System.Application.csproj", "Modules/System/UVS.Modules.System.Application/"]
-COPY ["Modules/System/UVS.Moduels.System.Infrastructure/UVS.Moduels.System.Infrastructure.csproj", "Modules/System/UVS.Moduels.System.Infrastructure/"]
+COPY ["Modules/System/UVS.Modules.System.Infrastructure/UVS.Modules.System.Infrastructure.csproj", "Modules/System/UVS.Modules.System.Infrastructure/"]
 COPY ["Modules/System/UVS.Modules.System.Domain/UVS.Modules.System.Domain.csproj", "Modules/System/UVS.Modules.System.Domain/"]
+
+#COPY ["Modules/System/UVS.Modules.System.Infrastructure/UVS.Modules.System.Infrastructure.csproj", "Modules/System/UVS.Modules.System.Infrastructure/"]
+#COPY ["Modules/System/UVS.Modules.System.Domain/UVS.Modules.System.Domain.csproj", "Modules/System/UVS.Modules.System.Domain/"]
 
 RUN dotnet restore "Api/UVS.Api/UVS.Api.csproj"
 
