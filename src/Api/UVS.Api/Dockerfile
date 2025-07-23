@@ -28,7 +28,7 @@
 # WORKDIR /app
 # COPY --from=publish /app/publish .
 # ENTRYPOINT ["dotnet", "UVS.Api.dll"]
- 
+  
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
 EXPOSE 8080
@@ -39,16 +39,16 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
  
 COPY ["Api/UVS.Api/UVS.Api.csproj", "Api/UVS.Api/"]
-COPY ["Modules/Authentication/UVS.Modules.Authentication.Infrastrcture/UVS.Modules.Authentication.Infrastrcture.csproj", "Modules/Authentication/UVS.Modules.Authentication.Infrastrcture/"]
-COPY ["Modules/System/UVS.Moduels.System.Infrastructure/UVS.Moduels.System.Infrastructure.csproj", "Modules/System/UVS.Moduels.System.Infrastructure/"]
-COPY ["Modules/System/UVS.Modules.System.Application/UVS.Modules.System.Application.csproj", "Modules/System/UVS.Modules.System.Application/"]
+COPY ["Common/UVS.Common.Infrastructure/UVS.Common.Infrastructure.csproj", "Common/UVS.Common.Infrastructure/"]
 COPY ["Common/UVS.Common.Application/UVS.Common.Application.csproj", "Common/UVS.Common.Application/"]
 COPY ["Common/UVS.Common.Domain/UVS.Common.Domain.csproj", "Common/UVS.Common.Domain/"]
+COPY ["Modules/Authentication/UVS.Modules.Authentication.Infrastrcture/UVS.Modules.Authentication.Infrastrcture.csproj", "Modules/Authentication/UVS.Modules.Authentication.Infrastrcture/"]
+COPY ["Modules/System/UVS.Modules.System.Application/UVS.Modules.System.Application.csproj", "Modules/System/UVS.Modules.System.Application/"]
+COPY ["Modules/System/UVS.Moduels.System.Infrastructure/UVS.Moduels.System.Infrastructure.csproj", "Modules/System/UVS.Moduels.System.Infrastructure/"]
 COPY ["Modules/System/UVS.Module.System.Domain/UVS.Module.System.Domain.csproj", "Modules/System/UVS.Module.System.Domain/"]
-COPY ["Common/UVS.Common.Infrastructure/UVS.Common.Infrastructure.csproj", "Common/UVS.Common.Infrastructure/"]
 
 RUN dotnet restore "Api/UVS.Api/UVS.Api.csproj"
- 
+
 COPY . .
 
 WORKDIR "/src/Api/UVS.Api"
@@ -62,3 +62,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "UVS.Api.dll"]
+
